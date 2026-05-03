@@ -8,59 +8,87 @@ interface Props {
 }
 
 export default function ProductForm({ product, onSave, onCancel }: Props) {
-  // TODO: Add one useState per field in your Product type. When editing, seed
-  // each state value from `product` so the form is pre-populated.
-  //
-  // Example:
-  // const [title, setTitle] = useState(product?.title ?? '');
-  // const [rating, setRating] = useState(product?.rating ?? 0);
+  const [firstName, setFirstName] = useState(product?.first_name ?? '');
+  const [lastName, setLastName] = useState(product?.last_name ?? '');
+  const [height, setHeight] = useState(product?.height ?? '');
+  const [weight, setWeight] = useState(product?.weight ?? '');
+  const [age, setAge] = useState(product?.age ?? '');
+
 
   const [error, setError] = useState<string | null>(null);
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     setError(null);
+    
+    if (!firstName.trim() || !lastName.trim() || height === '' || weight === '' || age === '') {
+      setError('All fields required');
+      return;
+    }
 
-    // TODO: Validate required fields, then call onSave with them.
-    //
-    // if (!title.trim()) {
-    //   setError('Title is required');
-    //   return;
-    // }
-    // onSave({ title, rating, ... });
+    const heightNum = Number(height);
+    const weightNum = Number(weight);
+    const ageNum = Number(age);
 
-    onSave({});
+    if (heightNum <= 0 || weightNum <= 0 || ageNum <= 0) {
+      setError('Height, Weight, and Age must be greater than zero');
+      return;
+    }
+
+    onSave({first_name: firstName, last_name: lastName, height: heightNum, weight: weightNum, age: ageNum,});
   }
 
   return (
     <div>
-      <h2>{product ? 'Edit Item' : 'Add New Item'}</h2>
+      <h2>{product ? 'Edit Player' : 'Add New Player'}</h2>
       {error && <p className="error">{error}</p>}
 
       <form onSubmit={handleSubmit} style={{ maxWidth: 520 }}>
-        {/* TODO: Add one labeled <input> per field.
 
             <label>
-              Title
+              First Name 
               <input
                 type="text"
-                value={title}
-                onChange={(e) => setTitle(e.target.value)}
-                required
+                value={firstName}
+                onChange={(e) => setFirstName(e.target.value)}
               />
             </label>
 
             <label>
-              Rating
+              Last Name
               <input
-                type="number"
-                min={0}
-                max={10}
-                value={rating}
-                onChange={(e) => setRating(Number(e.target.value))}
+                type="text"
+                value={lastName}
+                onChange={(e) => setLastName(e.target.value)}
               />
             </label>
-        */}
+
+            <label>
+              Height (in)
+              <input
+                type="number"
+                value={height}
+                onChange={(e) => setHeight(e.target.value)}
+              />
+            </label>
+
+            <label>
+              Weight (lbs)
+              <input
+                type="number"
+                value={weight}
+                onChange={(e) => setWeight(e.target.value)}
+              />
+            </label>
+
+            <label>
+              Age (yrs)
+              <input
+                type="number"
+                value={age}
+                onChange={(e) => setAge(e.target.value)}
+              />
+            </label>
 
         <div style={{ display: 'flex', gap: 8, marginTop: 12 }}>
           <button className="primary" type="submit">

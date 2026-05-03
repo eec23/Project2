@@ -14,19 +14,17 @@ export default function NavBar({ view, setView, user }: Props) {
     setView('home');
   }
 
-  // Helper: highlight the button for the current view.
   const cls = (target: View) => (view === target ? 'active' : '');
 
   return (
     <nav className="nav">
-      {/* TODO: Replace with your app name. */}
-      <span className="brand">My App</span>
+      <span className="brand">NBA Database</span>
 
       <button className={cls('home')} onClick={() => setView('home')}>
         Home
       </button>
       <button className={cls('list')} onClick={() => setView('list')}>
-        Products
+        Players
       </button>
 
       <span className="spacer" />

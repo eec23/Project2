@@ -27,8 +27,7 @@ export default function SignUpView({ setView }: Props) {
       return;
     }
 
-    // If email confirmation is ON in Supabase Auth settings, there's no session
-    // yet — tell the user to check their inbox. If it's OFF, we're signed in.
+
     if (data.session) {
       setView('list');
     } else {

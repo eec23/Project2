@@ -9,19 +9,14 @@ import SignInView from './pages/SignInView';
 import SignUpView from './pages/SignUpView';
 
 export default function App() {
-  // The current "page" is just a piece of state. This is the Option A
-  // navigation pattern from the Project 2 assignment: no router, just a
-  // conditional render keyed off a string.
   const [view, setView] = useState<View>('home');
   const [user, setUser] = useState<User | null>(null);
 
   useEffect(() => {
-    // Restore the session on page load so a refresh doesn't sign the user out.
     supabase.auth.getSession().then(({ data }) => {
       setUser(data.session?.user ?? null);
     });
 
-    // Keep `user` in sync when sign-in / sign-out happens anywhere in the app.
     const { data: sub } = supabase.auth.onAuthStateChange((_event, session) => {
       setUser(session?.user ?? null);
     });

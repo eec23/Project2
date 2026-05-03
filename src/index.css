@@ -2,9 +2,9 @@
   --bg: #fafafa;
   --fg: #111827;
   --muted: #6b7280;
-  --border: #e5e7eb;
-  --accent: #006633;
-  --accent-soft: #f1f5e8;
+  --border: lightblue;
+  --accent: blue;
+  --accent-soft: lightgray;
   --danger: #b91c1c;
   font-family: system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif;
   color: var(--fg);
@@ -23,6 +23,10 @@ main {
   max-width: 960px;
   margin: 0 auto;
   padding: 24px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 h1, h2, h3 {
@@ -102,11 +106,15 @@ label {
 
 .card {
   background: white;
-  border: 1px solid var(--border);
-  border-radius: 8px;
+  border: 5px groove var(--border);
+  border-radius: 12px;
   padding: 16px;
   margin-bottom: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
+
 
 .error {
   color: var(--danger);
@@ -115,4 +123,12 @@ label {
   padding: 8px 12px;
   border-radius: 6px;
   margin: 8px 0;
+}
+
+.desc{
+  font-size: 20px;
+}
+
+.add{
+  margin-bottom: 12px;
 }
