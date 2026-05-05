@@ -1,5 +1,5 @@
 :root {
-  --bg: #fafafa;
+  --bg: lightgray;
   --fg: #111827;
   --muted: #6b7280;
   --border: lightblue;
@@ -82,26 +82,47 @@ label {
 .nav {
   display: flex;
   align-items: center;
-  gap: 8px;
   padding: 12px 24px;
   background: white;
   border-bottom: 1px solid var(--border);
+  justify-content: space-between;
+}
+
+.nav > div {
+  display: flex;
+  gap: 16px;
 }
 
 .nav .brand {
   font-weight: 700;
   color: var(--accent);
   margin-right: 16px;
+  font-size: 20px;
+  cursor: default;
 }
 
-.nav .spacer {
-  flex: 1;
+.nav span {
+  cursor: pointer;
+  font-weight: 700;
 }
 
-.nav button.active {
-  background: var(--accent-soft);
-  border-color: var(--accent);
+.nav span:hover {
   color: var(--accent);
+}
+
+.nav .active {
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.nav .email {
+  color: var(--muted);
+  cursor: default;
+  font-weight: 400;
+}
+
+.nav .email:hover {
+  color: var(--muted);
 }
 
 .card {
@@ -132,3 +153,4 @@ label {
 .add{
   margin-bottom: 12px;
 }
+

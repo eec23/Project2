@@ -23,9 +23,6 @@ export default function ProductListView({ user }: Props) {
     setLoading(true);
     setError(null);
 
-    // TODO: Replace 'products' with your actual table name, and replace
-    // Product with your type. Order however makes sense for your data.
-    //
      const { data, error } = await supabase
        .from('players')
        .select('*')
@@ -40,9 +37,6 @@ export default function ProductListView({ user }: Props) {
   async function handleAdd(data: Partial<Product>) {
     if (!user) return;
 
-    // TODO: Insert into your table. Remember to include user_id so your
-    // RLS policy can check ownership on later updates/deletes.
-    //
      const { error } = await supabase
        .from('players')
        .insert([{ ...data, user_id: user.id }]);
@@ -57,8 +51,6 @@ export default function ProductListView({ user }: Props) {
   async function handleEdit(data: Partial<Product>) {
     if (!editing) return;
 
-    // TODO: Update the row by id.
-    //
      const { error } = await supabase
        .from('players')
        .update(data)

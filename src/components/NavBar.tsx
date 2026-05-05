@@ -20,33 +20,33 @@ export default function NavBar({ view, setView, user }: Props) {
     <nav className="nav">
       <span className="brand">NBA Database</span>
 
-      <button className={cls('home')} onClick={() => setView('home')}>
+      <div>
+      <span className={cls('home')} onClick={() => setView('home')}>
         Home
-      </button>
-      <button className={cls('list')} onClick={() => setView('list')}>
+      </span>
+      <span className={cls('list')} onClick={() => setView('list')}>
         Players
-      </button>
-
-      <span className="spacer" />
+      </span>
 
       {user ? (
         <>
-          <span style={{ color: 'var(--muted)' }}>{user.email}</span>
-          <button onClick={handleSignOut}>Sign Out</button>
+          <span className='email'>{user.email}</span>
+          <span onClick={handleSignOut}>Sign Out</span>
         </>
       ) : (
         <>
-          <button className={cls('signin')} onClick={() => setView('signin')}>
+          <span className={cls('signin')} onClick={() => setView('signin')}>
             Sign In
-          </button>
-          <button
+          </span>
+          <span
             className={`primary ${cls('signup')}`}
             onClick={() => setView('signup')}
           >
             Sign Up
-          </button>
+          </span>
         </>
       )}
+      </div>
     </nav>
   );
 }
